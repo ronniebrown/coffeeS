@@ -2,7 +2,6 @@
 
 var React = require('react-native');
 var MapboxGLMap = require('react-native-mapbox-gl');
-var Firebase = require('firebase');
 var mapRef = [];
 
 var {
