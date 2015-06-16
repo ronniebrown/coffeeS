@@ -2,7 +2,8 @@
 
 var React = require('react-native');
 var MapboxGLMap = require('react-native-mapbox-gl');
-var mapRef = 'mapRef';
+var Firebase = require('firebase');
+var mapRef = [];
 
 var {
   AppRegistry,
@@ -20,21 +21,32 @@ var map = React.createClass({
         latitude: 0,
         longitude: 0
        },
-       center: {
-         latitude: 40.72052634,
-         longitude: -73.97686958312988
-       },
-       zoom: 11,
-       direction: 40,
-       annotations: [{
-         latitude: 40.72052634,
-         longitude:  -73.97686958312988,
-         title: 'This is marker 1',
+        center: {
+          latitude: 47.59907722583646,
+          longitude: -122.33312308788298
+        },
+        zoom: 11,
+        direction: 0,
+        annotations: [{
+          latitude: 47.59907722583646,
+          longitude:  -122.33312308788298,
+          title: 'Zeitgeist Coffee',
        },{
-         latitude: 40.714541341726175,
-         longitude:  -74.00579452514648,
-         subtitle: 'Neat, this is a subtitle'
-       }]
+          latitude: 47.63517269198647,
+          longitude:  -122.3572200536728,
+          title: 'El Diablo Coffee'
+       },
+       {
+          latitude: 47.61405071987257,
+          longitude:  -122.32813417911531,
+          title: 'Starbucks Reserve'
+       }, 
+       {
+          latitude: 47.62166421850536,
+          longitude:  -122.32112288475038,
+          title: 'Vivace Sidewalk Cafe'
+       },  
+       ]
      }
   },
   _onChange(e) {
@@ -50,30 +62,20 @@ var map = React.createClass({
     StatusBarIOS.setHidden(true);
     return (
       <View style={styles.container}>
-       <Text style={styles.text} onPress={() => this.setDirectionAnimated(mapRef, 0)}>
-         Set direction to 0
+       <Text>
+         Coffee Snob
        </Text>
-       <Text style={styles.text} onPress={() => this.setZoomLevelAnimated(mapRef, 6)}>
-        Zoom out to zoom level 6
+       <Text style={styles.text} onPress={() => this.setCenterCoordinateZoomLevelAnimated(mapRef, 47.62166421850536, -122.32112288475038, 14)}>
+        Vivace Sidewalk Cafe
       </Text>
-       <Text style={styles.text} onPress={() => this.setCenterCoordinateAnimated(mapRef, 48.8589, 2.3447)}>
-        Go to Paris at current zoom level {parseInt(this.state.currentZoom)}
+      <Text style={styles.text} onPress={() => this.setCenterCoordinateZoomLevelAnimated(mapRef, 47.63517269198647, -122.3572200536728, 14)}>
+        El Diablo    
       </Text>
-      <Text style={styles.text} onPress={() => this.setCenterCoordinateZoomLevelAnimated(mapRef, 35.68829, 139.77492, 14)}>
-       Go to Tokyo at fixed zoom level 14
-     </Text>
-     <Text style={styles.text} onPress={() => this.addAnnotations(mapRef, [{
-       latitude: 40.73312,
-       longitude:  -73.989,
-       title: 'This is a new marker',
-       }])}>
-        Add new marker
+      <Text style={styles.text} onPress={() => this.setCenterCoordinateZoomLevelAnimated(mapRef, 47.61405071987257, -122.32813417911531, 14)}>
+        Starbucks Reserve      
       </Text>
-      <Text style={styles.text} onPress={() => this.selectAnnotationAnimated(mapRef, 0)}>
-        Open first popup
-      </Text>
-      <Text style={styles.text} onPress={() => this.removeAnnotation(mapRef,  0)}>
-        Remove first annotation
+      <Text style={styles.text} onPress={() => this.setCenterCoordinateZoomLevelAnimated(mapRef, 47.59907722583646, -122.33312308788298, 14)}>
+        Zeitgeist Coffee 
       </Text>
       <MapboxGLMap
         style={styles.map}
@@ -82,7 +84,7 @@ var map = React.createClass({
         showsUserLocation={true}
         ref={mapRef}
         accessToken={'pk.eyJ1Ijoicm9ubmllYnJvd24iLCJhIjoiMzc4NjkzZGU4NjM3Y2M0MWQ4MTAxNjkzYTI4MjZkYmIifQ.Nlwl-yg8rC5c0SxjMt0few'}
-        styleURL={'asset://styles/mapbox-streets-v7.json'}
+        styleURL={'asset://styles/emerald-v7.json'}
         centerCoordinate={this.state.center}
         userLocationVisible={true}
         zoomLevel={this.state.zoom}
