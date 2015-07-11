@@ -62,7 +62,7 @@ var map = React.createClass({
     return (
       <View style={styles.container}>
        <Text>
-         Coffee Snob
+         Coffee Finder
        </Text>
        <Text style={styles.text} onPress={() => this.setCenterCoordinateZoomLevelAnimated(mapRef, 47.62166421850536, -122.32112288475038, 14)}>
         Vivace Sidewalk Cafe
